@@ -1,7 +1,7 @@
 import {Button, Center, Stack} from '@mantine/core'
-import {type GetServerSidePropsContext, type NextPage} from 'next'
+import type {GetServerSidePropsContext, NextPage} from 'next'
 import {getProviders, signIn} from 'next-auth/react'
-import {type AppProps} from 'next/app'
+import type {AppProps} from 'next/app'
 import {getServerAuthSession} from '~/server/auth'
 
 type SignInProps = {
@@ -9,10 +9,6 @@ type SignInProps = {
 }
 
 const SignInPage: NextPage<SignInProps> = ({providers}) => {
-  const handleSignIn = async (provider: string) => {
-    await signIn(provider, {callbackUrl: window.location.origin})
-  }
-
   return (
     <Center m={4}>
       <Stack pt="xl" spacing="xs">
@@ -20,7 +16,9 @@ const SignInPage: NextPage<SignInProps> = ({providers}) => {
           <Button
             key={index}
             m={4}
-            onClick={() => handleSignIn(provider)}
+            onClick={() =>
+              signIn(provider, {callbackUrl: window.location.origin})
+            }
             tt="capitalize"
           >
             Sign In with {provider}
