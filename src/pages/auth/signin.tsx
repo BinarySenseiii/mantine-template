@@ -1,30 +1,18 @@
-import {Button, Center, Stack} from '@mantine/core'
+import {Button, Center} from '@mantine/core'
 import type {GetServerSidePropsContext, NextPage} from 'next'
-import {getProviders, signIn} from 'next-auth/react'
-import type {AppProps} from 'next/app'
+import {signIn} from 'next-auth/react'
 import {getServerAuthSession} from '~/server/auth'
 
-type SignInProps = {
-  providers: AppProps
-}
-
-const SignInPage: NextPage<SignInProps> = ({providers}) => {
+const SignInPage: NextPage = () => {
   return (
     <Center m={4}>
-      <Stack pt="xl" spacing="xs">
-        {Object.keys(providers).map((provider, index) => (
-          <Button
-            key={index}
-            m={4}
-            onClick={() =>
-              signIn(provider, {callbackUrl: window.location.origin})
-            }
-            tt="capitalize"
-          >
-            Sign In with {provider}
-          </Button>
-        ))}
-      </Stack>
+      <Button
+        m={4}
+        onClick={() => signIn('google', {callbackUrl: '/'})}
+        tt="capitalize"
+      >
+        Sign In with Google
+      </Button>
     </Center>
   )
 }
@@ -43,10 +31,7 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
     }
   }
 
-  const providers = await getProviders()
   return {
-    props: {
-      providers,
-    },
+    props: {},
   }
 }
