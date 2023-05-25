@@ -11,11 +11,15 @@ const SignOutBtn: React.FC<SignOutProps> = ({callbackUrl = '/auth/signin'}) => {
   const router = useRouter()
 
   const onSignOutHandle = async () => {
-    const data = await signOut({redirect: false, callbackUrl})
-    router.push(data.url)
+    try {
+      const data = await signOut({redirect: false, callbackUrl})
+      router.push(data.url)
+    } catch (error) {
+      throw new Error('Something went wrong. Please try again later.')
+    }
   }
 
-  return <Button onClick={onSignOutHandle}>SignOut</Button>
+  return <Button onClick={onSignOutHandle}>Sign Out</Button>
 }
 
 export default SignOutBtn

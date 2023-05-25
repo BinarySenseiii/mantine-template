@@ -8,7 +8,7 @@ import {type NextPage} from 'next'
 import {type ReactElement, type ReactNode} from 'react'
 import '~/styles/globals.css'
 
-export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+export type NextPageWithLayout<P = unknown, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode
 }
 

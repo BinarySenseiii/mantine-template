@@ -1,5 +1,5 @@
 import {Button, Group, Stack, Text, Title} from '@mantine/core'
-import {NextPage} from 'next'
+import {type NextPage} from 'next'
 import {signIn, useSession} from 'next-auth/react'
 import {SignOutBtn} from '~/components/auth'
 
@@ -15,8 +15,11 @@ const HomePage: NextPage = () => {
       </Group>
 
       <div>
-        <Button onClick={() => signIn()}>Signin</Button>
-        {data?.user && <SignOutBtn />}
+        {data?.user ? (
+          <SignOutBtn />
+        ) : (
+          <Button onClick={() => signIn('google')}>Signin</Button>
+        )}
       </div>
 
       <Text
