@@ -8,7 +8,7 @@ const myTheme: MantineThemeOverride = {
   ...colors,
   colorScheme: 'light',
   primaryColor: 'brand',
-  primaryShade: 3,
+  // primaryShade: 3,
 }
 
 const MantineThemeProvider: React.FC<{children: ReactNode}> = ({children}) => {
