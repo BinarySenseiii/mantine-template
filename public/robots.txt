@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://mantine-template-zeta.vercel.app
+
+# Sitemaps
+Sitemap: https://mantine-template-zeta.vercel.app/sitemap.xml

@@ -22,6 +22,7 @@
     }
   },
   "include": [
+    "next-sitemap.config.js",
     ".eslintrc.cjs",
     "next-env.d.ts",
     "**/*.ts",
