@@ -7,6 +7,7 @@ import MantineThemeProvider from '~/providers/mantine'
 import {type NextPage} from 'next'
 import {type ReactElement, type ReactNode} from 'react'
 import '~/styles/globals.css'
+import {QueryWrapper} from '~/providers/query'
 
 export type NextPageWithLayout<P = unknown, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode
@@ -22,11 +23,14 @@ export default function App(
   const getLayout =
     props.Component.getLayout ?? ((page) => <BaseLayout>{page}</BaseLayout>)
 
+  console.log('props::: ', props)
   return (
     <SessionProvider session={props.session}>
-      <MantineThemeProvider>
-        {getLayout(<props.Component {...props.pageProps} />)}
-      </MantineThemeProvider>
+      <QueryWrapper>
+        <MantineThemeProvider>
+          {getLayout(<props.Component {...props.pageProps} />)}
+        </MantineThemeProvider>
+      </QueryWrapper>
     </SessionProvider>
   )
 }
