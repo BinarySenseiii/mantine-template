@@ -1,8 +1,6 @@
-/* eslint-disable no-plusplus */
-export default function capitalizeWords(str: string) {
-  const words = str.split(' ');
-  for (let i = 0; i < words.length; i++) {
-    words[i] = words[i][0].toUpperCase() + words[i].slice(1);
-  }
-  return words.join(' ');
+export default function capitalizeWords(input: string): string {
+  return input
+    .split(' ')
+    .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ')
 }
