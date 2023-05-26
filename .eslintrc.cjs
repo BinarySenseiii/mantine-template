@@ -22,6 +22,7 @@ const config = {
   extends: ['next/core-web-vitals', 'plugin:@typescript-eslint/recommended'],
   rules: {
     '@typescript-eslint/restrict-template-expressions': 'off',
+    '@typescript-eslint/ban-types': 'off',
     '@typescript-eslint/consistent-type-imports': [
       'warn',
       {
