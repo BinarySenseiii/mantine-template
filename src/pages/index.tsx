@@ -3,9 +3,12 @@ import {Avatar, Button, Center, Stack, Text} from '@mantine/core'
 import type {GetServerSidePropsContext, NextPage} from 'next'
 import type {Session} from 'next-auth'
 import {signOut} from 'next-auth/react'
+import {useCharacters} from '~/api/morty'
 import {getServerAuthSession} from '~/server/auth'
 
 const HomePage: NextPage<{session: Session}> = ({session}) => {
+  const {data} = useCharacters()
+  console.log('data::: ', data)
   const user = session.user
   return (
     <Center h="100vh">

@@ -1,7 +1,7 @@
 import type {AxiosInstance, AxiosRequestConfig, AxiosResponse} from 'axios'
 import axios from 'axios'
 
-const RICK_MORTY_BASEURL = 'https://v1.nocodeapi.com'
+const RICK_MORTY_BASEURL = 'https://rickandmortyapi.com/api'
 const NEXT_API_BASEURL = '/api'
 
 /* export const urls = {
@@ -20,7 +20,8 @@ const createInstance = (baseURL: string, options: {}) =>
   axios.create({baseURL, ...options})
 
 export const request = {
-  rickMorty: createInstance(RICK_MORTY_BASEURL, options),
+  // rickMorty: createInstance(RICK_MORTY_BASEURL, options),
+  rickMorty: createInstance(RICK_MORTY_BASEURL, {}),
   nextAPi: createInstance(NEXT_API_BASEURL, {}),
 }
 
