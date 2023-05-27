@@ -3,11 +3,11 @@ import {SessionProvider} from 'next-auth/react'
 import {type AppProps} from 'next/app'
 
 import {BaseLayout} from '~/layout'
-import MantineThemeProvider from '~/providers/mantine'
+import MantineThemeProvider from '~/lib/mantine'
 import {type NextPage} from 'next'
 import {type ReactElement, type ReactNode} from 'react'
 import '~/styles/globals.css'
-import {QueryWrapper} from '~/providers/query'
+import {QueryWrapper} from '~/lib/query'
 
 export type NextPageWithLayout<P = unknown, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode
