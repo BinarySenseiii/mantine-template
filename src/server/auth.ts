@@ -1,12 +1,11 @@
-import { type GetServerSidePropsContext } from "next";
+import {type GetServerSidePropsContext} from 'next'
 import {
   getServerSession,
   type DefaultSession,
   type NextAuthOptions,
-} from "next-auth";
-import GoogleProvider from "next-auth/providers/google";
-import { env } from "~/env.mjs";
-
+} from 'next-auth'
+import GoogleProvider from 'next-auth/providers/google'
+import {env} from '~/env.mjs'
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -14,13 +13,13 @@ import { env } from "~/env.mjs";
  *
  * @see https://next-auth.js.org/getting-started/typescript#module-augmentation
  */
-declare module "next-auth" {
+declare module 'next-auth' {
   interface Session extends DefaultSession {
     user: {
-      id: string;
+      id: string
       // ...other properties
       // role: UserRole;
-    } & DefaultSession["user"];
+    } & DefaultSession['user']
   }
 
   // interface User {
@@ -36,7 +35,7 @@ declare module "next-auth" {
  */
 export const authOptions: NextAuthOptions = {
   callbacks: {
-    session: ({ session, token }) => ({
+    session: ({session, token}) => ({
       ...session,
       user: {
         ...session.user,
@@ -52,14 +51,14 @@ export const authOptions: NextAuthOptions = {
 
       authorization: {
         params: {
-          prompt: "consent",
-          access_type: "offline",
-          response_type: "code"
-        }
-      }
+          prompt: 'consent',
+          access_type: 'offline',
+          response_type: 'code',
+        },
+      },
     }),
   ],
-  
+
   secret: env.NEXTAUTH_SECRET,
 
   session: {
@@ -69,7 +68,7 @@ export const authOptions: NextAuthOptions = {
   pages: {
     signIn: '/auth/signin',
   },
-};
+}
 
 /**
  * Wrapper for `getServerSession` so that you don't need to import the `authOptions` in every file.
@@ -77,8 +76,8 @@ export const authOptions: NextAuthOptions = {
  * @see https://next-auth.js.org/configuration/nextjs
  */
 export const getServerAuthSession = (ctx: {
-  req: GetServerSidePropsContext["req"];
-  res: GetServerSidePropsContext["res"];
+  req: GetServerSidePropsContext['req']
+  res: GetServerSidePropsContext['res']
 }) => {
-  return getServerSession(ctx.req, ctx.res, authOptions);
-};
+  return getServerSession(ctx.req, ctx.res, authOptions)
+}
