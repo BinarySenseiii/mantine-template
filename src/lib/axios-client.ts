@@ -13,25 +13,25 @@ const NEXT_API_BASEURL = '/api'
 const responseBody = <T>(response: AxiosResponse<T>) => response.data
 
 export const options = {
-  headers: {'content-type': 'application/json'},
+	headers: {'content-type': 'application/json'},
 }
 
 const createInstance = (baseURL: string, options: {}) =>
-  axios.create({baseURL, ...options})
+	axios.create({baseURL, ...options})
 
 export const request = {
-  // rickMorty: createInstance(RICK_MORTY_BASEURL, options),
-  rickMorty: createInstance(RICK_MORTY_BASEURL, {}),
-  nextAPi: createInstance(NEXT_API_BASEURL, {}),
+	// rickMorty: createInstance(RICK_MORTY_BASEURL, options),
+	rickMorty: createInstance(RICK_MORTY_BASEURL, {}),
+	nextAPi: createInstance(NEXT_API_BASEURL, {}),
 }
 
 export const requestActions = {
-  get: <T>(
-    instance: AxiosInstance,
-    url: string,
-    config: AxiosRequestConfig = {},
-  ) => instance.get<T>(url, config).then(responseBody),
+	get: <T>(
+		instance: AxiosInstance,
+		url: string,
+		config: AxiosRequestConfig = {},
+	) => instance.get<T>(url, config).then(responseBody),
 
-  post: <T>(instance: AxiosInstance, url: string, body: {}) =>
-    instance.post<T>(url, body).then(responseBody),
+	post: <T>(instance: AxiosInstance, url: string, body: {}) =>
+		instance.post<T>(url, body).then(responseBody),
 }
